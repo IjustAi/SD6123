@@ -1,0 +1,10 @@
+---
+_target_: fedpft.dataset.Dataset
+name: fed-isic2019
+dataset: flwrlabs/fed-isic2019
+num_classes: 8
+image_column_name: image
+partition_by: label
+num_clients: ${num_clients}
+dirichlet_alpha: ${dirichlet_alpha}
+batch_size: ${batch_size}
