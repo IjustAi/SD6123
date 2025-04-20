@@ -15,3 +15,5 @@ python -m fedpft.main dataset=isic device=mps num_clients=4 num_rounds=1 batch_s
 Compare with FedAvg
 
 ![](_static/fed_comparison.png)
+![](_static/Training_log_pft.png)
+![](_static/Training_log_avg.png)
