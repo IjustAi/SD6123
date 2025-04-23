@@ -1,0 +1,963 @@
+[2025-04-22 19:38:53,212][flwr][WARNING] - DEPRECATED FEATURE: flwr.simulation.start_simulation() is deprecated.
+	Instead, use the `flwr run` CLI command to start a local simulation in your Flower app, as shown for example below:
+
+		$ flwr new  # Create a new Flower app from a template
+
+		$ flwr run  # Run the Flower app in Simulation Mode
+
+	Using `start_simulation()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+[2025-04-22 19:38:53,212][flwr][INFO] - Starting Flower simulation, config: num_rounds=200, no round_timeout
+[2025-04-22 19:38:56,043][flwr][INFO] - Flower VCE: Ray initialized with resources: {'CPU': 8.0, 'object_store_memory': 2147483648.0, 'node:127.0.0.1': 1.0, 'memory': 9302999040.0, 'node:__internal_head__': 1.0}
+[2025-04-22 19:38:56,043][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2025-04-22 19:38:56,043][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 2, 'num_gpus': 0}
+[2025-04-22 19:38:56,050][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 4 actors
+[2025-04-22 19:38:56,050][flwr][INFO] - [INIT]
+[2025-04-22 19:38:56,050][flwr][INFO] - Using initial global parameters provided by strategy
+[2025-04-22 19:38:56,050][flwr][INFO] - Starting evaluation of initial global parameters
+[2025-04-22 19:39:15,393][flwr][INFO] - initial parameters (loss, other metrics): 0.06642853644586379, {'accuracy': 0.02064516129032258}
+[2025-04-22 19:39:15,393][flwr][INFO] - 
+[2025-04-22 19:39:15,393][flwr][INFO] - [ROUND 1]
+[2025-04-22 19:39:15,393][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 4)
+[2025-04-22 19:39:16,438][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 929, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+
+[2025-04-22 19:39:16,439][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 929, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+
+[2025-04-22 19:39:16,439][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+[2025-04-22 19:39:16,439][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+[2025-04-22 19:39:16,439][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2025-04-22 19:39:35,289][flwr][INFO] - fit progress: (1, 0.06642853644586379, {'accuracy': 0.02064516129032258}, 19.896107041990035)
+[2025-04-22 19:39:35,290][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2025-04-22 19:39:35,290][flwr][INFO] - 
+[2025-04-22 19:39:35,290][flwr][INFO] - [ROUND 2]
+[2025-04-22 19:39:35,290][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 4)
+[2025-04-22 19:39:35,542][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 929, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+
+[2025-04-22 19:39:35,542][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+[2025-04-22 19:39:35,635][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 929, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+
+[2025-04-22 19:39:35,635][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+[2025-04-22 19:39:35,635][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2025-04-22 19:39:55,544][flwr][INFO] - fit progress: (2, 0.06642853644586379, {'accuracy': 0.02064516129032258}, 40.15105058399786)
+[2025-04-22 19:39:55,544][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2025-04-22 19:39:55,544][flwr][INFO] - 
+[2025-04-22 19:39:55,544][flwr][INFO] - [ROUND 3]
+[2025-04-22 19:39:55,544][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 4)
+[2025-04-22 19:39:55,778][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 929, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+
+[2025-04-22 19:39:55,778][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+[2025-04-22 19:39:55,909][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 929, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+
+[2025-04-22 19:39:55,909][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+[2025-04-22 19:39:55,909][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2025-04-22 19:40:16,127][flwr][INFO] - fit progress: (3, 0.06642853644586379, {'accuracy': 0.02064516129032258}, 60.7348792499979)
+[2025-04-22 19:40:16,128][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2025-04-22 19:40:16,128][flwr][INFO] - 
+[2025-04-22 19:40:16,128][flwr][INFO] - [ROUND 4]
+[2025-04-22 19:40:16,128][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 4)
+[2025-04-22 19:40:16,460][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 929, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+
+[2025-04-22 19:40:16,460][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+[2025-04-22 19:40:16,613][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 929, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+
+[2025-04-22 19:40:16,613][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+[2025-04-22 19:40:16,613][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2025-04-22 19:40:38,906][flwr][INFO] - fit progress: (4, 0.06642853644586379, {'accuracy': 0.02064516129032258}, 83.51367566699628)
+[2025-04-22 19:40:38,906][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2025-04-22 19:40:38,906][flwr][INFO] - 
+[2025-04-22 19:40:38,906][flwr][INFO] - [ROUND 5]
+[2025-04-22 19:40:38,906][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 4)
+[2025-04-22 19:40:39,242][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 929, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+
+[2025-04-22 19:40:39,242][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+[2025-04-22 19:40:39,400][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 929, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+
+[2025-04-22 19:40:39,400][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+[2025-04-22 19:40:39,401][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2025-04-22 19:41:01,900][flwr][INFO] - fit progress: (5, 0.06642853644586379, {'accuracy': 0.02064516129032258}, 106.50741562499024)
+[2025-04-22 19:41:01,901][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2025-04-22 19:41:01,901][flwr][INFO] - 
+[2025-04-22 19:41:01,901][flwr][INFO] - [ROUND 6]
+[2025-04-22 19:41:01,902][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 4)
+[2025-04-22 19:41:02,141][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 929, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+
+[2025-04-22 19:41:02,141][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+[2025-04-22 19:41:02,241][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 929, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+
+[2025-04-22 19:41:02,241][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+[2025-04-22 19:41:02,241][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2025-04-22 19:41:23,075][flwr][INFO] - fit progress: (6, 0.06642853644586379, {'accuracy': 0.02064516129032258}, 127.68353708399809)
+[2025-04-22 19:41:23,076][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2025-04-22 19:41:23,076][flwr][INFO] - 
+[2025-04-22 19:41:23,076][flwr][INFO] - [ROUND 7]
+[2025-04-22 19:41:23,077][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 4)
+[2025-04-22 19:41:23,296][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 929, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+
+[2025-04-22 19:41:23,297][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+[2025-04-22 19:41:23,400][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 929, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+
+[2025-04-22 19:41:23,400][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+[2025-04-22 19:41:23,401][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2025-04-22 19:41:44,941][flwr][INFO] - fit progress: (7, 0.06642853644586379, {'accuracy': 0.02064516129032258}, 149.54947604199697)
+[2025-04-22 19:41:44,942][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2025-04-22 19:41:44,942][flwr][INFO] - 
+[2025-04-22 19:41:44,942][flwr][INFO] - [ROUND 8]
+[2025-04-22 19:41:44,942][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 4)
+[2025-04-22 19:41:45,240][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 929, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+
+[2025-04-22 19:41:45,241][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27617, ip=127.0.0.1, actor_id=4eeb77f998d83c15cdc554d101000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x12a80cdc0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+[2025-04-22 19:41:45,360][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 929, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ClientAppException): [36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+
+[2025-04-22 19:41:45,360][flwr][ERROR] - [36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 144, in __call__
+    return self._call(message, context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 128, in ffn
+    out_message = handle_legacy_message_from_msgtype(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/message_handler/message_handler.py", line 96, in handle_legacy_message_from_msgtype
+    client = client_fn(context)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/client/client_app.py", line 72, in adaptor_fn
+    return client_fn(str(cid))  # type: ignore
+  File "/Users/yaokaiqi/Documents/fedpara/fedpara/client.py", line 191, in client_fn
+    net=instantiate(model).to(device),
+NameError: name 'device' is not defined
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ClientAppActor.run()[39m (pid=27615, ip=127.0.0.1, actor_id=53736bda630cd37a466ee70c01000000, repr=<flwr.simulation.ray_transport.ray_actor.ClientAppActor object at 0x162e0cdf0>)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 64, in run
+    raise ClientAppException(str(ex)) from ex
+flwr.client.client_app.ClientAppException: 
+Exception ClientAppException occurred. Message: name 'device' is not defined
+[2025-04-22 19:41:45,360][flwr][INFO] - aggregate_fit: received 0 results and 2 failures

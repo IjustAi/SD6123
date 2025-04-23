@@ -1,0 +1,42 @@
+---
+seed: 121
+
+num_clients: 4
+num_rounds: 10
+clients_per_round: 4
+num_epochs: 5
+batch_size: 32
+algorithm: FedPara
+
+server_device: cpu
+
+client_resources:
+  num_cpus: 2
+  num_gpus: 0
+
+dataset_config:
+  name: ISIC2019                 # 💡 关键改动，告诉程序加载 HuggingFace 数据集
+  partition: iid                # ISIC 本身就是联邦结构，默认可以设为 iid
+  num_classes: 8                # ISIC2019 子集为 8 类皮肤病
+  alpha: 0.5                    # 可留作冗余，不影响 ISIC 加载
+
+model:
+  _target_: fedpara.models.VGG  # ✅ 确保你这个模型接受 num_classes 参数
+  num_classes: ${dataset_config.num_classes}
+  param_type: lowrank           # 支持 lowrank 或 standard
+  ratio: 0.1                    # 如果用 lowrank，这里控制稀疏度
+
+hyperparams:
+  eta_l: 0.1
+  learning_decay: 0.992
+
+strategy:
+  _target_: flwr.server.strategy.FedAvg
+  fraction_fit: 0.00001
+  fraction_evaluate: 0.0
+  min_evaluate_clients: 0
+  min_fit_clients: ${clients_per_round}
+  min_available_clients: ${clients_per_round}
+  accept_failures: false
+
+exp_id: ${model.param_type}_${dataset_config.name}_${dataset_config.partition}_alpha${dataset_config.alpha}

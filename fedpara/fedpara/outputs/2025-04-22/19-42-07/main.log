@@ -1,0 +1,276 @@
+[2025-04-22 19:42:22,389][flwr][WARNING] - DEPRECATED FEATURE: flwr.simulation.start_simulation() is deprecated.
+	Instead, use the `flwr run` CLI command to start a local simulation in your Flower app, as shown for example below:
+
+		$ flwr new  # Create a new Flower app from a template
+
+		$ flwr run  # Run the Flower app in Simulation Mode
+
+	Using `start_simulation()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+[2025-04-22 19:42:22,390][flwr][INFO] - Starting Flower simulation, config: num_rounds=200, no round_timeout
+[2025-04-22 19:42:25,145][flwr][INFO] - Flower VCE: Ray initialized with resources: {'CPU': 8.0, 'object_store_memory': 2147483648.0, 'node:127.0.0.1': 1.0, 'node:__internal_head__': 1.0, 'memory': 10062299136.0}
+[2025-04-22 19:42:25,145][flwr][INFO] - Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+[2025-04-22 19:42:25,145][flwr][INFO] - Flower VCE: Resources for each Virtual Client: {'num_cpus': 2, 'num_gpus': 0}
+[2025-04-22 19:42:25,151][flwr][INFO] - Flower VCE: Creating VirtualClientEngineActorPool with 4 actors
+[2025-04-22 19:42:25,151][flwr][INFO] - [INIT]
+[2025-04-22 19:42:25,151][flwr][INFO] - Using initial global parameters provided by strategy
+[2025-04-22 19:42:25,151][flwr][INFO] - Starting evaluation of initial global parameters
+[2025-04-22 19:42:44,281][flwr][INFO] - initial parameters (loss, other metrics): 0.06642853644586379, {'accuracy': 0.02064516129032258}
+[2025-04-22 19:42:44,281][flwr][INFO] - 
+[2025-04-22 19:42:44,281][flwr][INFO] - [ROUND 1]
+[2025-04-22 19:42:44,281][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 4)
+[2025-04-22 19:42:50,008][flwr][ERROR] - The actor died unexpectedly before finishing this task.
+	class_name: ClientAppActor
+	actor_id: 9d872e126a2cdf096d2b6aa901000000
+	pid: 27689
+	namespace: 2081fc6a-987c-4491-86b3-72424009ee63
+	ip: 127.0.0.1
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+[2025-04-22 19:42:50,008][flwr][WARNING] - Actor(9d872e126a2cdf096d2b6aa901000000) will be remove from pool.
+[2025-04-22 19:42:50,008][flwr][ERROR] - The actor died unexpectedly before finishing this task.
+	class_name: ClientAppActor
+	actor_id: d685bfc5660af4c375635ec101000000
+	pid: 27685
+	namespace: 2081fc6a-987c-4491-86b3-72424009ee63
+	ip: 127.0.0.1
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+[2025-04-22 19:42:50,008][flwr][WARNING] - Actor(d685bfc5660af4c375635ec101000000) will be remove from pool.
+[2025-04-22 19:42:50,010][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 291, in _fetch_future_result
+    raise ex
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 931, in get_objects
+    raise value
+ray.exceptions.ActorDiedError: The actor died unexpectedly before finishing this task.
+	class_name: ClientAppActor
+	actor_id: d685bfc5660af4c375635ec101000000
+	pid: 27685
+	namespace: 2081fc6a-987c-4491-86b3-72424009ee63
+	ip: 127.0.0.1
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+
+[2025-04-22 19:42:50,010][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 291, in _fetch_future_result
+    raise ex
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 931, in get_objects
+    raise value
+ray.exceptions.ActorDiedError: The actor died unexpectedly before finishing this task.
+	class_name: ClientAppActor
+	actor_id: 9d872e126a2cdf096d2b6aa901000000
+	pid: 27689
+	namespace: 2081fc6a-987c-4491-86b3-72424009ee63
+	ip: 127.0.0.1
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+
+[2025-04-22 19:42:50,010][flwr][ERROR] - The actor died unexpectedly before finishing this task.
+	class_name: ClientAppActor
+	actor_id: d685bfc5660af4c375635ec101000000
+	pid: 27685
+	namespace: 2081fc6a-987c-4491-86b3-72424009ee63
+	ip: 127.0.0.1
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+[2025-04-22 19:42:50,010][flwr][ERROR] - The actor died unexpectedly before finishing this task.
+	class_name: ClientAppActor
+	actor_id: 9d872e126a2cdf096d2b6aa901000000
+	pid: 27689
+	namespace: 2081fc6a-987c-4491-86b3-72424009ee63
+	ip: 127.0.0.1
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+[2025-04-22 19:42:50,010][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2025-04-22 19:43:10,676][flwr][INFO] - fit progress: (1, 0.06642853644586379, {'accuracy': 0.02064516129032258}, 26.395422749992576)
+[2025-04-22 19:43:10,676][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2025-04-22 19:43:10,676][flwr][INFO] - 
+[2025-04-22 19:43:10,676][flwr][INFO] - [ROUND 2]
+[2025-04-22 19:43:10,676][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 4)
+[2025-04-22 19:43:10,678][flwr][WARNING] - REMOVED actor d685bfc5660af4c375635ec101000000 from pool
+[2025-04-22 19:43:10,678][flwr][WARNING] - Pool size: 3
+[2025-04-22 19:43:10,680][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2776, in get
+    raise ValueError(
+ValueError: Invalid type of object refs, <class 'NoneType'>, is given. 'object_refs' must either be an ObjectRef or a list of ObjectRefs. 
+
+[2025-04-22 19:43:10,682][flwr][WARNING] - REMOVED actor 9d872e126a2cdf096d2b6aa901000000 from pool
+[2025-04-22 19:43:10,682][flwr][ERROR] - Invalid type of object refs, <class 'NoneType'>, is given. 'object_refs' must either be an ObjectRef or a list of ObjectRefs. 
+[2025-04-22 19:43:10,682][flwr][WARNING] - Pool size: 2
+[2025-04-22 19:43:10,682][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2776, in get
+    raise ValueError(
+ValueError: Invalid type of object refs, <class 'NoneType'>, is given. 'object_refs' must either be an ObjectRef or a list of ObjectRefs. 
+
+[2025-04-22 19:43:10,682][flwr][ERROR] - Invalid type of object refs, <class 'NoneType'>, is given. 'object_refs' must either be an ObjectRef or a list of ObjectRefs. 
+[2025-04-22 19:43:10,682][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2025-04-22 19:43:15,172][flwr][INFO] - The cluster expanded. Adding 2 actors to the pool.
+[2025-04-22 19:43:31,762][flwr][INFO] - fit progress: (2, 0.06642853644586379, {'accuracy': 0.02064516129032258}, 47.48181366699282)
+[2025-04-22 19:43:31,762][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2025-04-22 19:43:31,762][flwr][INFO] - 
+[2025-04-22 19:43:31,762][flwr][INFO] - [ROUND 3]
+[2025-04-22 19:43:31,762][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 4)
+[2025-04-22 19:43:33,487][flwr][ERROR] - The actor died unexpectedly before finishing this task.
+	class_name: ClientAppActor
+	actor_id: 11634b21404f534cf6ea391e01000000
+	pid: 27722
+	namespace: 2081fc6a-987c-4491-86b3-72424009ee63
+	ip: 127.0.0.1
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+[2025-04-22 19:43:33,488][flwr][WARNING] - Actor(11634b21404f534cf6ea391e01000000) will be remove from pool.
+[2025-04-22 19:43:33,488][flwr][ERROR] - The actor died unexpectedly before finishing this task.
+	class_name: ClientAppActor
+	actor_id: 9877b5a9b0136c30bcd7d9e601000000
+	pid: 27721
+	namespace: 2081fc6a-987c-4491-86b3-72424009ee63
+	ip: 127.0.0.1
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+[2025-04-22 19:43:33,488][flwr][WARNING] - Actor(9877b5a9b0136c30bcd7d9e601000000) will be remove from pool.
+[2025-04-22 19:43:33,488][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 291, in _fetch_future_result
+    raise ex
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 931, in get_objects
+    raise value
+ray.exceptions.ActorDiedError: The actor died unexpectedly before finishing this task.
+	class_name: ClientAppActor
+	actor_id: 11634b21404f534cf6ea391e01000000
+	pid: 27722
+	namespace: 2081fc6a-987c-4491-86b3-72424009ee63
+	ip: 127.0.0.1
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+
+[2025-04-22 19:43:33,488][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 291, in _fetch_future_result
+    raise ex
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2782, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 931, in get_objects
+    raise value
+ray.exceptions.ActorDiedError: The actor died unexpectedly before finishing this task.
+	class_name: ClientAppActor
+	actor_id: 9877b5a9b0136c30bcd7d9e601000000
+	pid: 27721
+	namespace: 2081fc6a-987c-4491-86b3-72424009ee63
+	ip: 127.0.0.1
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+
+[2025-04-22 19:43:33,488][flwr][ERROR] - The actor died unexpectedly before finishing this task.
+	class_name: ClientAppActor
+	actor_id: 11634b21404f534cf6ea391e01000000
+	pid: 27722
+	namespace: 2081fc6a-987c-4491-86b3-72424009ee63
+	ip: 127.0.0.1
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+[2025-04-22 19:43:33,488][flwr][ERROR] - The actor died unexpectedly before finishing this task.
+	class_name: ClientAppActor
+	actor_id: 9877b5a9b0136c30bcd7d9e601000000
+	pid: 27721
+	namespace: 2081fc6a-987c-4491-86b3-72424009ee63
+	ip: 127.0.0.1
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+[2025-04-22 19:43:33,489][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
+[2025-04-22 19:43:55,238][flwr][INFO] - fit progress: (3, 0.06642853644586379, {'accuracy': 0.02064516129032258}, 70.95805137499701)
+[2025-04-22 19:43:55,238][flwr][INFO] - configure_evaluate: no clients selected, skipping evaluation
+[2025-04-22 19:43:55,238][flwr][INFO] - 
+[2025-04-22 19:43:55,238][flwr][INFO] - [ROUND 4]
+[2025-04-22 19:43:55,238][flwr][INFO] - configure_fit: strategy sampled 2 clients (out of 4)
+[2025-04-22 19:43:55,241][flwr][WARNING] - REMOVED actor 9877b5a9b0136c30bcd7d9e601000000 from pool
+[2025-04-22 19:43:55,241][flwr][WARNING] - Pool size: 3
+[2025-04-22 19:43:55,243][flwr][WARNING] - REMOVED actor 11634b21404f534cf6ea391e01000000 from pool
+[2025-04-22 19:43:55,243][flwr][WARNING] - Pool size: 2
+[2025-04-22 19:43:55,243][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2776, in get
+    raise ValueError(
+ValueError: Invalid type of object refs, <class 'NoneType'>, is given. 'object_refs' must either be an ObjectRef or a list of ObjectRefs. 
+
+[2025-04-22 19:43:55,243][flwr][ERROR] - Traceback (most recent call last):
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_client_proxy.py", line 95, in _submit_job
+    out_mssg, updated_context = self.actor_pool.get_client_result(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 401, in get_client_result
+    return self._fetch_future_result(cid)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/flwr/simulation/ray_transport/ray_actor.py", line 282, in _fetch_future_result
+    res_cid, out_mssg, updated_context = ray.get(
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/yaokaiqi/Documents/fedpara/venv/lib/python3.10/site-packages/ray/_private/worker.py", line 2776, in get
+    raise ValueError(
+ValueError: Invalid type of object refs, <class 'NoneType'>, is given. 'object_refs' must either be an ObjectRef or a list of ObjectRefs. 
+
+[2025-04-22 19:43:55,243][flwr][ERROR] - Invalid type of object refs, <class 'NoneType'>, is given. 'object_refs' must either be an ObjectRef or a list of ObjectRefs. 
+[2025-04-22 19:43:55,243][flwr][ERROR] - Invalid type of object refs, <class 'NoneType'>, is given. 'object_refs' must either be an ObjectRef or a list of ObjectRefs. 
+[2025-04-22 19:43:55,243][flwr][INFO] - aggregate_fit: received 0 results and 2 failures
